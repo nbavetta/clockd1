@@ -1,0 +1,4 @@
+m = $('#modal');
+m.html('<%= j(render partial: 'timecard_form', locals: {timecard: @timecard}) %>'); 
+m.modal('show');
+$('#modal').integrateDatetimepicker();

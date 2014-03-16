@@ -1,0 +1,25 @@
+- if timecards.empty?     
+  %span.text-warning There are no timecards here!   
+- else
+  %div.table-responsive
+    %table.table.table-hover.table-bordered     
+      %thead         
+        %tr           
+          %th Title           
+          %th Created at           
+          %th Completed
+          %th Actions
+      %tbody         
+        - timecards.each do |timecard|           
+          %tr             
+            %td               
+              %strong= timecard.title             
+            %td.text-info= timecard.created_at             
+            %td.text-success= timecard.completed
+            %td                
+              = link_to edit_timecard_path(timecard), remote: true do 
+                %i.icon-edit
+                %span Edit or Clock Out
+              = link_to timecard_path(timecard), remote: true, method: :delete, data: {confirm: "Are you sure you want to delete timecard #{timecard.title}?"} do 
+                %i.icon-remove
+                %span Remove 
